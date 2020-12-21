@@ -1,0 +1,94 @@
+Sending build context to Docker daemon  5.298GB
+Step 1/8 : FROM pytorch/pytorch:latest
+ ---> f8a1d10ae3d7
+Step 2/8 : WORKDIR /
+ ---> Using cache
+ ---> 5cd8b0db11ac
+Step 3/8 : RUN apt-get update &&     apt-get install --no-install-recommends -y git                                                curl
+ ---> Using cache
+ ---> 202b078aae46
+Step 4/8 : RUN python -m pip install --no-cache-dir --upgrade pip &&     pip install --no-cache-dir transformers                                jina[http]==0.4.1
+ ---> Running in e755e85436d9
+Collecting pip
+  Downloading pip-20.3.3-py2.py3-none-any.whl (1.5 MB)
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 20.0.2
+    Uninstalling pip-20.0.2:
+      Successfully uninstalled pip-20.0.2
+Successfully installed pip-20.3.3
+Collecting jina[http]==0.4.1
+  Downloading jina-0.4.1.tar.gz (181 kB)
+Requirement already satisfied: numpy in /opt/conda/lib/python3.8/site-packages (from jina[http]==0.4.1) (1.19.2)
+Collecting pyzmq>=17.1.0
+  Downloading pyzmq-20.0.0-cp38-cp38-manylinux1_x86_64.whl (1.1 MB)
+Collecting ruamel.yaml>=0.15.89
+  Downloading ruamel.yaml-0.16.12-py2.py3-none-any.whl (111 kB)
+Collecting ruamel.yaml.clib>=0.1.2
+  Downloading ruamel.yaml.clib-0.2.2-cp38-cp38-manylinux1_x86_64.whl (578 kB)
+Collecting tornado>=5.1.0
+  Downloading tornado-6.1-cp38-cp38-manylinux2010_x86_64.whl (427 kB)
+Collecting transformers
+  Downloading transformers-4.1.1-py3-none-any.whl (1.5 MB)
+Requirement already satisfied: filelock in /opt/conda/lib/python3.8/site-packages (from transformers) (3.0.12)
+Requirement already satisfied: tqdm>=4.27 in /opt/conda/lib/python3.8/site-packages (from transformers) (4.46.0)
+Requirement already satisfied: requests in /opt/conda/lib/python3.8/site-packages (from transformers) (2.23.0)
+Collecting tokenizers==0.9.4
+  Downloading tokenizers-0.9.4-cp38-cp38-manylinux2010_x86_64.whl (2.9 MB)
+Collecting regex!=2019.12.17
+  Downloading regex-2020.11.13-cp38-cp38-manylinux2014_x86_64.whl (738 kB)
+Collecting flask
+  Downloading Flask-1.1.2-py2.py3-none-any.whl (94 kB)
+Requirement already satisfied: Jinja2>=2.10.1 in /opt/conda/lib/python3.8/site-packages (from flask->jina[http]==0.4.1) (2.11.2)
+Collecting click>=5.1
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Collecting itsdangerous>=0.24
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Requirement already satisfied: MarkupSafe>=0.23 in /opt/conda/lib/python3.8/site-packages (from Jinja2>=2.10.1->flask->jina[http]==0.4.1) (1.1.1)
+Collecting Werkzeug>=0.15
+  Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+Collecting flask_cors
+  Downloading Flask_Cors-3.0.9-py2.py3-none-any.whl (14 kB)
+Requirement already satisfied: Six in /opt/conda/lib/python3.8/site-packages (from flask_cors->jina[http]==0.4.1) (1.14.0)
+Collecting gevent
+  Downloading gevent-20.9.0-cp38-cp38-manylinux2010_x86_64.whl (6.1 MB)
+Requirement already satisfied: setuptools in /opt/conda/lib/python3.8/site-packages (from gevent->jina[http]==0.4.1) (46.4.0.post20200518)
+Collecting greenlet>=0.4.17
+  Downloading greenlet-0.4.17-cp38-cp38-manylinux1_x86_64.whl (48 kB)
+Collecting grpcio
+  Downloading grpcio-1.34.0-cp38-cp38-manylinux2014_x86_64.whl (4.0 MB)
+Collecting packaging
+  Downloading packaging-20.8-py2.py3-none-any.whl (39 kB)
+Collecting pyparsing>=2.0.2
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting protobuf
+  Downloading protobuf-3.14.0-cp38-cp38-manylinux1_x86_64.whl (1.0 MB)
+Collecting python-magic
+  Downloading python_magic-0.4.18-py2.py3-none-any.whl (8.6 kB)
+Requirement already satisfied: chardet<4,>=3.0.2 in /opt/conda/lib/python3.8/site-packages (from requests->transformers) (3.0.4)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /opt/conda/lib/python3.8/site-packages (from requests->transformers) (1.25.8)
+Requirement already satisfied: certifi>=2017.4.17 in /opt/conda/lib/python3.8/site-packages (from requests->transformers) (2020.6.20)
+Requirement already satisfied: idna<3,>=2.5 in /opt/conda/lib/python3.8/site-packages (from requests->transformers) (2.9)
+Collecting sacremoses
+  Downloading sacremoses-0.0.43.tar.gz (883 kB)
+Collecting joblib
+  Downloading joblib-1.0.0-py3-none-any.whl (302 kB)
+Collecting zope.event
+  Downloading zope.event-4.5.0-py2.py3-none-any.whl (6.8 kB)
+Collecting zope.interface
+  Downloading zope.interface-5.2.0-cp38-cp38-manylinux2010_x86_64.whl (244 kB)
+Building wheels for collected packages: jina, sacremoses
+  Building wheel for jina (setup.py): started
+  Building wheel for jina (setup.py): finished with status 'done'
+  Created wheel for jina: filename=jina-0.4.1-py3-none-any.whl size=247613 sha256=1dacfb90e0d6bf0adfcef8bacfecc64991692d94d0398de92b541a8e69e87222
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xnzfavk4/wheels/ff/f2/b3/f7c18823fe118c01969d5056f42e657890e8c44078dfb5fe93
+  Building wheel for sacremoses (setup.py): started
+  Building wheel for sacremoses (setup.py): finished with status 'done'
+  Created wheel for sacremoses: filename=sacremoses-0.0.43-py3-none-any.whl size=893259 sha256=e755df47bd2a7c4089c0bd2c4a7ffc130b6963caa5b806bc831ecbacad09ecdd
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xnzfavk4/wheels/7b/78/f4/27d43a65043e1b75dbddaa421b573eddc67e712be4b1c80677
+Successfully built jina sacremoses
+Installing collected packages: Werkzeug, ruamel.yaml.clib, itsdangerous, click, zope.interface, zope.event, tornado, ruamel.yaml, regex, pyzmq, pyparsing, protobuf, joblib, grpcio, greenlet, flask, tokenizers, sacremoses, python-magic, packaging, jina, gevent, flask-cors, transformers
+  Attempting uninstall: ruamel.yaml
+    Found existing installation: ruamel-yaml 0.15.87
+[91mERROR: Cannot uninstall 'ruamel-yaml'. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.
+[0mThe command '/bin/sh -c python -m pip install --no-cache-dir --upgrade pip &&     pip install --no-cache-dir transformers                                jina[http]==0.4.1' returned a non-zero code: 1
