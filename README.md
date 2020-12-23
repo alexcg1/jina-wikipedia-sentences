@@ -23,3 +23,12 @@ Where `500` is the number of sentences you want to index
 ### With gRPC
 
 `python app.py -t query`
+
+## Build a Docker Image
+
+This will create a Docker image with pre-indexed data and an open port for REST queries.
+
+1. Run all the steps in setup and index first
+2. Run `docker build -t jina-wikipedia-sentences .` in the root directory of this repo
+
+Run it with `docker run -p 45678:45678 jina-wikipedia-sentences` and then search via the REST API.
