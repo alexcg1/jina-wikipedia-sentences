@@ -3,3 +3,4 @@ workspace
 env
 results
 __pycache__
+kaggle.json

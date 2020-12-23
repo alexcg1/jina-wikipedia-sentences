@@ -9,7 +9,7 @@ from jina.flow import Flow
 
 def config():
     os.environ["JINA_DATA_FILE"] = os.environ.get(
-        "JINA_DATA_FILE", "data/input.csv"
+        "JINA_DATA_FILE", "data/input.txt"
     )
     os.environ["JINA_WORKSPACE"] = os.environ.get("JINA_WORKSPACE", "workspace")
 
