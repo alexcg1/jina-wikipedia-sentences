@@ -3,11 +3,6 @@ DATASET="mikeortman/wikipedia-sentences"
 DATA_DIR="data"
 LINES=3000
 
-if [ "$#" -ne 1 ]; then
-  echo "bash ./get_data.sh [DATA_DIR]"
-  exit 1
-fi
-
 if [ -d ${DATA_DIR} ]; then
   echo ${DATA_DIR}' exists, please remove it before running the script'
   exit 1
