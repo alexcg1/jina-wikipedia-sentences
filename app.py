@@ -19,21 +19,15 @@ def config():
 def print_topk(resp, sentence):
     for d in resp.search.docs:
 
-        print(f"Ta-Dah🔮, here are what we found for: {sentence}")
-        with open (f"results/{sentence}.txt", "w") as file:
-            file.write(f"{sentence}\n\n")
+        print(f"Ta-Dah🔮, here are the results for: {sentence}")
 
-            for idx, match in enumerate(d.matches):
+        for match in d.matches:
 
-                score = match.score.value
-                if score < 0.0:
-                    continue
-                # subject = match.meta_info.decode()
-                info = match.text.strip().replace('[COMMA]', ',')
-                file.write(f"{info}\n")
-                # print(f'> {idx:>2d}({score:.2f}). {character.upper()} said, "{dialog}"')
-                output = f"* {info}\n"
-                print(output)
+            score = match.score.value
+            if score < 0.0:
+                continue
+            output = f"* {match.text}"
+            print(output)
 
 
 def index(num_docs):
@@ -51,7 +45,7 @@ def query(top_k):
     f = Flow().load_config("flows/query.yml")
     with f:
         while True:
-            text = input("please type a sentence: ")
+            text = input("please type a query: ")
             if not text:
                 break
 
