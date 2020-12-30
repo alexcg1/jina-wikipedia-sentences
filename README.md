@@ -18,7 +18,17 @@ Where `500` is the number of sentences you want to index
 
 ### With REST API
 
-`python app.py -t query_restful`
+```sh
+python app.py -t query_restful
+```
+
+Then:
+
+```sh
+curl --request POST -d '{"top_k": 10, "mode": "search",  "data": ["text:hello world"]}' -H 'Content-Type: application/json' 'http://0.0.0.0:45678/api/search'
+````
+
+Or use [Jinabox](https://jina.ai/jinabox.js/) with endpoint `http://127.0.0.1:45678/api/search`
 
 ### With gRPC
 
@@ -30,5 +40,5 @@ This will create a Docker image with pre-indexed data and an open port for REST 
 
 1. Run all the steps in setup and index first. Don't run anything in the query step!
 2. Run `docker build -t jina-wikipedia-sentences .` in the root directory of this repo
-
-Run it with `docker run -p 45678:45678 jina-wikipedia-sentences` and then search via the REST API.
+3. Run it with `docker run -p 45678:45678 jina-wikipedia-sentences` 
+4. Search using instructions from [REST API](#with-rest-api) above
