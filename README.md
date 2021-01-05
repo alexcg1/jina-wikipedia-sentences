@@ -10,29 +10,23 @@ This is an example of using [Jina](http://www.jina.ai)'s neural search framework
 
 ## Index
 
-`python app.py -t index -n 500`
+`python app.py index`
 
-Where `500` is the number of sentences you want to index
+You can set the maximum documents to index with `export MAX_DOCS=500`
 
 ## Query
 
-### With REST API
-
 ```sh
-python app.py -t query_restful
+python app.py search
 ```
 
 Then:
 
 ```sh
-curl --request POST -d '{"top_k": 10, "mode": "search",  "data": ["text:hello world"]}' -H 'Content-Type: application/json' 'http://0.0.0.0:45678/api/search'
+curl --request POST -d '{"top_k": 10, "mode": "search",  "data": ["text:hello world"]}' -H 'Content-Type: application/json' 'http://0.0.0.0:65481/api/search'
 ````
 
-Or use [Jinabox](https://jina.ai/jinabox.js/) with endpoint `http://127.0.0.1:45678/api/search`
-
-### With gRPC
-
-`python app.py -t query`
+Or use [Jinabox](https://jina.ai/jinabox.js/) with endpoint `http://127.0.0.1:65481/api/search`
 
 ## Build a Docker Image
 
@@ -40,5 +34,5 @@ This will create a Docker image with pre-indexed data and an open port for REST 
 
 1. Run all the steps in setup and index first. Don't run anything in the query step!
 2. Run `docker build -t jina-wikipedia-sentences .` in the root directory of this repo
-3. Run it with `docker run -p 45678:45678 jina-wikipedia-sentences` 
+3. Run it with `docker run -p 65481:65481 jina-wikipedia-sentences` 
 4. Search using instructions from [REST API](#with-rest-api) above

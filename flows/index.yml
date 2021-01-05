@@ -2,7 +2,10 @@
 pods:
   encoder:
     uses: pods/encode.yml
-    timeout_ready: 1200000
+    parallel: $JINA_PARALLEL
+    timeout_ready: 600000
     read_only: true
-  indexer:
-    uses: pods/index.yml
+  doc_indexer:
+    uses: pods/doc.yml
+    shards: $JINA_SHARDS
+    separated_workspace: true

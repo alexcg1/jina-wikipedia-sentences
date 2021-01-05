@@ -1,4 +1,0 @@
-click
-kaggle
-transformers==3.3.1
-jina[http]==0.6.1
