@@ -15,7 +15,7 @@ This is an example of using [Jina](http://www.jina.ai)'s neural search framework
 
 You can set the maximum documents to index with `export MAX_DOCS=500`
 
-## Query
+## Search
 
 ```sh
 python app.py search
@@ -36,4 +36,4 @@ This will create a Docker image with pre-indexed data and an open port for REST 
 1. Run all the steps in setup and index first. Don't run anything in the query step!
 2. Run `docker build -t jina-wikipedia-sentences .` in the root directory of this repo
 3. Run it with `docker run -p 65481:65481 jina-wikipedia-sentences` 
-4. Search using instructions from [Query](#query) above
+4. Search using instructions from [Search](#search) above
