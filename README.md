@@ -7,6 +7,7 @@ This is an example of using [Jina](http://www.jina.ai)'s neural search framework
 1. `pip install -r requirements.txt`
 2. Set up [Kaggle](https://www.kaggle.com/docs/api#getting-started-installation-&-authentication)
 3. `sh ./get_data.sh`
+4. `export JINA_DATA_PATH='data/wikisent2.txt'`
 
 ## Index
 
