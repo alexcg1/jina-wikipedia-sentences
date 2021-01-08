@@ -34,6 +34,13 @@ Or use [Jinabox](https://jina.ai/jinabox.js/) with endpoint `http://127.0.0.1:65
 This will create a Docker image with pre-indexed data and an open port for REST queries.
 
 1. Run all the steps in setup and index first. Don't run anything in the query step!
-2. Run `docker build -t jina-wikipedia-sentences .` in the root directory of this repo
-3. Run it with `docker run -p 65481:65481 jina-wikipedia-sentences` 
-4. Search using instructions from [Search](#search) above
+2. If you want to [push to Jina Hub](#push-to-jina-hub) be sure to edit the `LABEL`s in `Dockerfile` to avoid clashing with other images
+3. Run `docker build -t jinahub/wikipedia-sentences .` in the root directory of this repo
+4. Run it with `docker run -p 65481:65481 jinahub/wikipedia-sentences` 
+5. Search using instructions from [Search](#search) above
+
+## Push to Jina Hub
+
+1. Ensure hub is installed with `pip install jina[hub]`
+2. Run `jina hub login` and paste the code into your browser to authenticate
+3. Run `jina hub push jinahub/wikipedia-sentences`
