@@ -41,9 +41,9 @@ This will create a Docker image with pre-indexed data and an open port for REST 
 
 1. Run all the steps in setup and index first. Don't run anything in the query step!
 2. If you want to [push to Jina Hub](#push-to-jina-hub) be sure to edit the `LABEL`s in `Dockerfile` to avoid clashing with other images
-3. Run `docker build -t jinahub/wikipedia-sentences .` in the root directory of this repo
-4. Run it with `docker run -p 65481:65481 jinahub/wikipedia-sentences` 
-5. Search using instructions from [Search](#search) above
+3. Run `docker build -t <your_image_name> .` in the root directory of this repo
+5. Run it with `docker run -p 65481:65481 <your_image_name>`
+6. Search using instructions from [Search](#search) above
 
 ### Image name format
 
@@ -56,14 +56,14 @@ jinahub/type.kind.jina-image-name:image-jina_version
 For example:
 
 ```
-jinahub/app.app.jina-wikipedia-sentences-30k:0.2.0-0.8.2
+jinahub/app.app.jina-wikipedia-sentences-30k:0.2.3-0.9.5
 ```
 
 ## Push to [Jina Hub](https://github.com/jina-ai/jina-hub)
 
 1. Ensure hub is installed with `pip install jina[hub]`
 2. Run `jina hub login` and paste the code into your browser to authenticate
-3. Run `jina hub push jinahub/wikipedia-sentences`
+3. Run `jina hub push <your_image_name>`
 
 ## Notes
 
