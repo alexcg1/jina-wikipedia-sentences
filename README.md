@@ -4,9 +4,11 @@ This is an example of using [Jina](http://www.jina.ai)'s neural search framework
 
 ## Run in Docker
 
-To run a Docker image with 30,000 pre-indexed sentences, just run:
+To run a Docker image with 30,000 pre-indexed sentences:
 
 `docker run -p 65481:65481 jinahub/app.app.jina-wikipedia-sentences-30k:0.2.3-0.9.5 `
+
+You can then query with `curl --request POST -d '{"top_k": 10, "mode": "search",  "data": ["text:hello world"]}' -H 'Content-Type: application/json' 'http://0.0.0.0:65481/api/search'`
 
 ## Setup
 
