@@ -57,7 +57,7 @@ This will create a Docker image with pre-indexed data and an open port for REST 
 
 ### Image name format
 
-Please use the following name format for your Docker image, otherwise it will be rejected if you want to push it to Jina Hub. Please also see my [notes](#notes) section before which explains my versioning weirdness
+Please use the following name format for your Docker image, otherwise it will be rejected if you want to push it to Jina Hub. Please also see my [versioning notes](#versioning-weirdness) section before which explains my versioning workaround.
 
 ```
 jinahub/type.kind.jina-image-name:image-jina_version
@@ -76,6 +76,12 @@ jinahub/app.app.jina-wikipedia-sentences-30k:0.2.3-0.9.5
 3. Run `jina hub push <your_image_name>`
 
 ## Notes
+
+### Changes from Default
+
+At the time of writing, `jina hub new...` creates an `encode.yml` with `max_length: 96`. I changed this to `196` which gives more accurate results (i.e. the query word actually appears in the text of the results)
+
+### Versioning Weirdness
 
 At the time of writing, the version of Jina in `requirements.txt` **doesn't** match the `jina_version` label we use in our `docker build ...` command. 
 
