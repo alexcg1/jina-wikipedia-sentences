@@ -7,7 +7,7 @@ This is an example of using [Jina](http://www.jina.ai)'s neural search framework
 To test this example you can run a Docker image with 30,000 pre-indexed sentences:
 
 ```sh
-docker run -p 65481:65481 jinahub/app.app.jina-wikipedia-sentences-30k:0.2.3-0.9.5
+docker run -p 65481:65481 jinahub/app.app.jina-wikipedia-sentences-30k
 ```
 
 You can then query by running:
