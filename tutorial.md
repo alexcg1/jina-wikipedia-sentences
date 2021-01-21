@@ -391,16 +391,6 @@ with:
   max_length: 192 # This works better for our Wikipedia dataset
 ```
 
-### Simplify the Code
-
-The `crafter` Pod splits each entry of our dataset into individual sentences. Our dataset is already in sentences, so this Pod is redundant. Let's remove it:
-
-```sh
-rm -f pods/craft.yml
-```
-
-We'll also need to remove those Pods from `flows/index.yml` and `flows/query.yml`
-
 #### Change Language Model
 
 Language model performance will vary based on your task. If you're indexing Chinese sentences, you wouldn't use an English-language model after all! Jina uses a sane (English language) default of [`distilbert-base-cased`](https://huggingface.co/distilbert-base-cased), but you may find [other models](https://huggingface.co/models) work better depending on your dataset and use case.
@@ -412,6 +402,16 @@ with:
   ...
   pretrained_model_name_or_path: <your model name>
 ```
+
+### Simplify the Code
+
+The `crafter` Pod splits each entry of our dataset into individual sentences. Our dataset is already in sentences, so this Pod is redundant. Let's remove it:
+
+```sh
+rm -f pods/craft.yml
+```
+
+We'll also need to remove those Pods from `flows/index.yml` and `flows/query.yml`
 
 ## 🤕 Troubleshooting
 
