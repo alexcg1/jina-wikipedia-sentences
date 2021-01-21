@@ -334,8 +334,9 @@ As in `flows/index.yml`, we use two Pods, but this time they behave differently:
 
 | Pod       | Task                                                    |
 | ---       | ---                                                     |
-| `encoder` | Encode the user's query into a vector                   |
-| `doc_idx` | Query the vector index and return the matching Document |
+| `crafter` | Convert user's query into a sentence                    |
+| `encoder` | Encode user's query into a vector                   |
+| `doc_idx` | Query vector index and return matching Document |
 
 ### Pods
 
@@ -343,7 +344,7 @@ As in `flows/index.yml`, we use two Pods, but this time they behave differently:
 
 You can think of the Flow as telling Jina *what* tasks to perform on the dataset. The Pods comprise the Flow and tell Jina *how* to perform each task, and they define the actual neural networks we use in neural search, namely the machine-learning models like `distilbert-base-cased`. (Which we can see in `pods/encode.yml`)
 
-Jina uses YAML files to describe objects like Flows and Pods, so we can easily configure the behavior of the Pods without touching their application code.
+Jina uses YAML files to describe objects like Flows and Pods, so we can easily configure the behavior without touching our application code.
 
 Let's look at `pods/encode.yml` as an example:
 
