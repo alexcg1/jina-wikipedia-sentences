@@ -2,7 +2,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Build Your First Neural Search App](#build-your-first-neural-search-app)
+- [Build Your First Jina App](#build-your-first-jina-app)
   - [👋 Introduction](#-introduction)
   - [🗝️ Key Concepts](#-key-concepts)
   - [🧪 Try it Out!](#-try-it-out)
@@ -10,17 +10,19 @@
   - [🗃️ Work with Data](#-work-with-data)
   - [🏃 Run the Flows](#-run-the-flows)
   - [🤔 How Does it Actually Work?](#-how-does-it-actually-work)
-  - [Troubleshooting](#troubleshooting)
+  - [⏭️  Next Steps](#-next-steps)
+  - [🤕 Troubleshooting](#troubleshooting)
   - [🎁 Wrap Up](#-wrap-up)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Build Your First Neural Search App
+# Build Your First Jina App
 
 ## 👋 Introduction
 
 This tutorial guides you through building your own neural search app using the [Jina framework](https://github.com/jina-ai/jina/). Don't worry if you're new to machine learning or search. We'll spell it all out right here.
 
+| ---          | ---                 |
 | Medium       | Text                |
 | Input        | Wikipedia sentences |
 | Output       | Wikipedia sentences |
@@ -37,7 +39,9 @@ TODO When you're finished, you'll have recreated our [wikipedia sentence search 
 
 ## 🗝️ Key Concepts
 
-- **[What is Neural Search?]** See how Jina's search is different from the traditional way
+TODO urls
+
+- **[What is Neural Search?]()** See how Jina's search is different from the traditional way
 - **[Jina 101](https://github.com/jina-ai/jina/tree/master/docs/chapters/101)**: Get an idea of Jina's core components
 - **[Jina 102](https://github.com/jina-ai/jina/tree/master/docs/chapters/102)**: See how Jina's components are wired together
 
@@ -52,7 +56,7 @@ docker run --name=wikipedia-search -p 65481:65481 jinahub/app.app.jina-wikipedia
 ```
 Note: You'll need to run the Docker image before trying the steps below
 
-### Query the Data
+### Search the Data
 
 #### With Jinabox
 
@@ -158,10 +162,9 @@ Our goal is to search a set of sentences from Wikipedia and return the closest s
 
 There are almost 8 million sentences in this dataset - that sounds like a LOT of work for Jina. Since this is just an example we'll only work with a small subset to get an idea of how things work.
 
-To get the data, you'll need to set up [Kaggle](https://www.kaggle.com/docs/api#getting-started-installation-&-authentication) (don't worry about installation)
+To get the data, you'll need to set up [Kaggle](https://www.kaggle.com/docs/api#getting-started-installation-&-authentication) and then download our dataset:
 
 ```sh
-pip install kaggle
 wget https://raw.githubusercontent.com/alexcg1/jina-wikipedia-sentences/master/get_data.sh
 sh ./get_data.sh
 ```
@@ -188,32 +191,23 @@ echo $JINA_DATA_PATH
 
 ## 🏃 Run the Flows
 
-Now that we've got the code to load our data, we're going to dive into writing our app and running our Flows!
+Now that we've got our dataset, let's write our app and run our Flows!
 
 ### Index Flow
 
-First up we need to build up an index of our file. We'll search through this index when we use the query Flow later. 
+First up we need to build up an index of our dataset, which we'll later search with our search Flow.
 
 ```sh
 python app.py index
 ```
-You'll see a lot of output scrolling by. Once you see this line:
+
+You'll see a lot of output scrolling by. You'll know indexing is complete once you see:
 
 ```sh
 Flow@58199[S]:flow is closed and all resources should be released already, current build level is EMPTY
 ```
 
-You'll know indexing is complete. This may take a little while the first time, since Jina needs to download the language model and tokenizer to deal with the data. You can think of these as the brains that power the search.
-
-#### Index More Documents
-
-Earlier we mentioned that our dataset has almost 8 million entries (known to Jina as *[Documents](http://101.jina.ai/#Documents)*). Jina defaults to indexing only 500 of these. To change this you can set the `MAX_DOCS` environment variable. So if you wanted to index 30,000 Documents:
-
-```sh
-export MAX_DOCS=30000
-```
-
-For now we suggest keeping your `MAX_DOCS` low so you can test everything works before taking the time to index a large dataset.
+This may take a little while the first time, since Jina needs to download the language model and tokenizer to process the dataset. You can think of these as the brains that power the search.
 
 ### Search Flow
 
@@ -226,10 +220,12 @@ python app.py search
 After a while you should see the console stop scrolling and display output like:
 
 ```console
-        🖥️ Local access:         http://0.0.0.0:65481
+        🖥️ Local access         http://0.0.0.0:65481
         🔒 Private network:     http://192.168.1.68:65481
         🌐 Public address:      http://81.37.167.157:65481
 ```
+
+Congratulations! You've just built your very own search engine!
 
 ⚠️  Be sure to note down the port number. We'll need it for `curl` and Jinabox! In our case we can see it's `65481`.
 
@@ -237,11 +233,9 @@ After a while you should see the console stop scrolling and display output like:
 
 ### Searching Data
 
-See our section on [querying the data](#query-the-data)
+See our section on [searching the data](#search-the-data).
 
-Congratulations! You've just built your very own search engine!
-
-Now that you've done that, you can stop it with Ctrl-C (or Command-C on a Mac)
+When you're finished, you can stop the search Flow with Ctrl-C (or Command-C on a Mac).
 
 ## 🤔 How Does it Actually Work?
 
@@ -251,7 +245,7 @@ Let's dive deeper to learn what happens inside our Flows and how they're built u
 
 <img src="https://raw.githubusercontent.com/jina-ai/jina/master/docs/chapters/101/img/ILLUS10.png" width="30%" align="left">
 
-As you can see in [Jina 101](https://github.com/jina-ai/jina/tree/master/docs/chapters/101), just as a plant manages nutrient flow and growth rate for its branches, a Flow manages the states and context of a group of Pods, orchestrating them to accomplish one task. 
+As you can see in [Jina 101](https://github.com/jina-ai/jina/tree/master/docs/chapters/101), just as a plant manages nutrient flow and growth rate for its branches, Jina's Flow manages the states and context of a group of Pods, orchestrating them to accomplish one specific task. 
 
 We define Flows in `app.py` to index and query our dataset:
 
@@ -262,29 +256,27 @@ from jina.flow import Flow
 
 def index():
     f = Flow.load_config('flows/index.yml')
-```
 
-Then we run the Flow with:
-
-```python
     with f:
         data_path = os.path.join(os.path.dirname(__file__), os.environ.get('JINA_DATA_PATH', None)) # Set data path
         f.index_lines(filepath=data_path, batch_size=16, read_mode='r', size=num_docs) # Set mode (index_lines) and indexing settings
 ```
 
-It really is that simple! Alternatively you can build Flows in `app.py` itself [without specifying them in YAML](https://docs.jina.ai/chapters/flow/index.html).
+Then to start the Flow, we just run `python app.py <flow_name>`, in this case:
+
+```sh
+python app.py index
+```
+
+ℹ️  Alternatively you can build Flows in `app.py` itself [without specifying them in YAML](https://docs.jina.ai/chapters/flow/index.html) or with [Jina Dashboard](http://dashboard.jina.ai)
 
 #### Indexing
 
-Every Flow has well, a flow to it. Different Pods pass data along the Flow, with one Pod's output becoming another Pod's input. Look at our indexing Flow as an example:
+Every Flow has well, a flow to it. 
 
-<p align="center">
-<img src="images/flow-index.png">
-</p>
+If you look at `input.csv` you'll see it's just one big text file. Our Flow will process it into something more suitable for Jina, which is handled by the Pods in the Flow. Each Pod performs a different task, with one Pod's output becoming another Pod's input. 
 
-If you look at `input.csv` you'll see it's just one big text file. Our Flow will process it into something more suitable for Jina, which is handled by the Pods in the Flow. Each Pod performs a different task.
-
-Let's look at your `flows/index.yml`:
+Let's look at `flows/index.yml`:
 
 ```yaml
 !Flow
@@ -312,7 +304,7 @@ Each Pod performs a different operation on the dataset:
 | `encoder`       | Encode each Document into a vector                   |
 | `doc_idx`       | Build an index of the vectors                        |
 
-Since our dataset is already made up of individual sentences, we can remove the `crafter` Pod as follows:
+Since the Wikipedia sentence dataset is already made up of individual sentences, we can remove the `crafter` Pod as follows:
 
 ```yaml
 !Flow
@@ -385,7 +377,7 @@ with:
   max_length: 96
 ```
 
-We first use the built-in `TransformerTorchEncoder` as the Pod's **[Executor](https://github.com/jina-ai/jina/tree/master/docs/chapters/101#executors)**. The `with` field is used to specify the parameters we pass to `TransformerTorchEncoder`.
+We first use the built-in `TransformerTorchEncoder` as the Pod's **[Executor](https://github.com/jina-ai/jina/tree/master/docs/chapters/101#executors)** TODO url. The `with` field is used to specify the parameters we pass to `TransformerTorchEncoder`.
 
 | Parameter          | Effect                                                    |
 | ---                | ---                                                       |
@@ -419,7 +411,7 @@ with:
   max_length: 192 # This works better for our Wikipedia dataset
 ```
 
-#### Change the Language Model
+#### Change Language Model
 
 Language model performance will vary based on your task. If you're indexing Chinese sentences, you wouldn't use an English-language model after all! Jina uses a sane (English language) default of [`distilbert-base-cased`](https://huggingface.co/distilbert-base-cased), but you may find [other models](https://huggingface.co/models) work better depending on your dataset and use case.
 
