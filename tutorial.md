@@ -22,6 +22,7 @@
 
 This tutorial guides you through building your own neural search app using the [Jina framework](https://github.com/jina-ai/jina/). Don't worry if you're new to machine learning or search. We'll spell it all out right here.
 
+| ---          | ---                 |
 | Medium       | Text                |
 | Input        | Wikipedia sentences |
 | Output       | Wikipedia sentences |
