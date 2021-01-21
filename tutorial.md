@@ -39,7 +39,9 @@ TODO When you're finished, you'll have recreated our [wikipedia sentence search 
 
 ## 🗝️ Key Concepts
 
-- **[What is Neural Search?]** See how Jina's search is different from the traditional way
+TODO urls
+
+- **[What is Neural Search?]()** See how Jina's search is different from the traditional way
 - **[Jina 101](https://github.com/jina-ai/jina/tree/master/docs/chapters/101)**: Get an idea of Jina's core components
 - **[Jina 102](https://github.com/jina-ai/jina/tree/master/docs/chapters/102)**: See how Jina's components are wired together
 
