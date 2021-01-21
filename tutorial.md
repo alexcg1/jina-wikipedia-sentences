@@ -7,7 +7,6 @@
   - [🗝️ Key Concepts](#-key-concepts)
   - [🧪 Try it Out!](#-try-it-out)
   - [🐍 Install](#-install)
-  - [🗃️ Work with Data](#-work-with-data)
   - [🏃 Run the Flows](#-run-the-flows)
   - [🤔 How Does it Actually Work?](#-how-does-it-actually-work)
   - [⏭️  Next Steps](#-next-steps)
@@ -107,7 +106,7 @@ You'll need:
 * Python 3.7 or higher installed, and `pip`
 * 8 gigabytes or more of RAM
 
-### Clone the repo
+### Clone the Repo
 
 Let's get the basic files we need to get moving:
 
@@ -117,7 +116,7 @@ git clone https://github.com/jina-ai/examples.git
 cd examples/my-first-jina-app
 ```
 
-### Create a new App
+### Create a New App
 
 ```sh
 jina hub new --type=app
@@ -154,8 +153,6 @@ pip install -r requirements.txt
 ```
 
 ⚠️  Now we're going to get our hands dirty, and if we're going to run into trouble, this is where we'll find it. If you hit any snags, check our **[troubleshooting](#troubleshooting)** section!
-
-## 🗃️ Work with Data
 
 ### Download Data
 
@@ -305,9 +302,9 @@ Each Pod performs a different operation on the dataset:
 | `encoder`       | Encode each Document into a vector                   |
 | `doc_idx`       | Build an index of the vectors                        |
 
-#### Querying
+#### Searching
 
-Just like indexing, the querying Flow is also defined in a YAML file, in this case at `flows/query.yml`. Let's once again remove the `crafter` Pod:
+Just like indexing, the search Flow is also defined in a YAML file, in this case at `flows/query.yml`:
 
 ```yaml
 !Flow
@@ -316,6 +313,9 @@ with:
   rest_api: true
   port_expose: $JINA_PORT
 pods:
+  crafter:
+    uses: pods/craft.yml
+    parallel: $JINA_PARALLEL
   encoder:
     uses: pods/encode.yml
     parallel: $JINA_PARALLEL
@@ -398,21 +398,7 @@ The `crafter` Pod splits each entry of our dataset into individual sentences. Ou
 rm -f pods/craft.yml
 ```
 
-We'll also need to remove it from `flows/index.yml`:
-
-```yaml
-!Flow
-pods:
-  encoder:
-    uses: pods/encode.yml
-    parallel: $JINA_PARALLEL
-    timeout_ready: 600000
-    read_only: true
-  doc_indexer:
-    uses: pods/doc.yml
-    shards: $JINA_SHARDS
-    separated_workspace: true
-```
+We'll also need to remove those Pods from `flows/index.yml` and `flows/query.yml`
 
 #### Change Language Model
 
