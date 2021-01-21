@@ -22,6 +22,7 @@
 
 This tutorial guides you through building your own neural search app using the [Jina framework](https://github.com/jina-ai/jina/). Don't worry if you're new to machine learning or search. We'll spell it all out right here.
 
+|              |                     |
 | ---          | ---                 |
 | Medium       | Text                |
 | Input        | Wikipedia sentences |
@@ -304,28 +305,6 @@ Each Pod performs a different operation on the dataset:
 | `encoder`       | Encode each Document into a vector                   |
 | `doc_idx`       | Build an index of the vectors                        |
 
-Since the Wikipedia sentence dataset is already made up of individual sentences, we can remove the `crafter` Pod as follows:
-
-```yaml
-!Flow
-pods:
-  encoder:
-    uses: pods/encode.yml
-    parallel: $JINA_PARALLEL
-    timeout_ready: 600000
-    read_only: true
-  doc_indexer:
-    uses: pods/doc.yml
-    shards: $JINA_SHARDS
-    separated_workspace: true
-```
-
-While we're at it, let's remove `pods/craft.yml`:
-
-```sh
-rm -f pods/craft.yml
-```
-
 #### Querying
 
 Just like indexing, the querying Flow is also defined in a YAML file, in this case at `flows/query.yml`. Let's once again remove the `crafter` Pod:
@@ -409,6 +388,30 @@ In `pods/encode.yml` you can increase the length of your embeddings:
 with:
   ...
   max_length: 192 # This works better for our Wikipedia dataset
+```
+
+### Simplify the Code
+
+The `crafter` Pod splits each entry of our dataset into individual sentences. Our dataset is already in sentences, so this Pod is redundant. Let's remove it:
+
+```sh
+rm -f pods/craft.yml
+```
+
+We'll also need to remove it from `flows/index.yml`:
+
+```yaml
+!Flow
+pods:
+  encoder:
+    uses: pods/encode.yml
+    parallel: $JINA_PARALLEL
+    timeout_ready: 600000
+    read_only: true
+  doc_indexer:
+    uses: pods/doc.yml
+    shards: $JINA_SHARDS
+    separated_workspace: true
 ```
 
 #### Change Language Model
