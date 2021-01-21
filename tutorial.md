@@ -450,4 +450,4 @@ In this tutorial you've learned:
 * How to query data with `curl` and Jinabox
 * The nitty-gritty behind Jina Flows and Pods
 
-Now that you have a broad understanding of how things work, you can try out some of more [example tutorials](https://github.com/jina-ai/examples) to build image or video search, or stay tuned for our next set of tutorials that build upon your Star Trek app.
+Now that you have a broad understanding of how things work, you can try out some of more [example tutorials](https://github.com/jina-ai/examples) to build image or video search, or stay tuned for our next set of tutorials that build upon this app.
